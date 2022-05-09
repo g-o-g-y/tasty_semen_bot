@@ -12,10 +12,7 @@ import static javax.persistence.GenerationType.SEQUENCE;
 @Getter
 @NoArgsConstructor
 @Entity(name = "Telegram_user")
-@Table(
-        name = "telegram_user",
-        uniqueConstraints = @UniqueConstraint(name = "user_username_unique", columnNames = "username")
-)
+@Table(name = "telegram_user")
 public class User {
     @Id
     @SequenceGenerator(
@@ -29,6 +26,8 @@ public class User {
     )
     private Long id;
 
-    @Column(nullable = false)
     private String username;
+
+    @Column(nullable = false)
+    private String name;
 }

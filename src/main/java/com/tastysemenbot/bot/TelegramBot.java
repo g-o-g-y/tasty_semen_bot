@@ -77,7 +77,7 @@ public class TelegramBot extends TelegramWebhookBot {
                 int rand = (int) (Math.random() * count);
                 count--;
                 User winner = users.get(rand);
-                if(winner.getUsername() != null) winners.add(winner.getName() + " aka " + winner.getUsername());
+                if (winner.getUsername() != null) winners.add(winner.getName() + " aka " + winner.getUsername());
                 else winners.add(winner.getName());
                 users.remove(rand);
             }
@@ -90,7 +90,7 @@ public class TelegramBot extends TelegramWebhookBot {
                                     Второе и третье места: денежный приз, чтобы тоже порадовались.
                                                                         
                                     Поздравляем победителей!
-                                    
+                                                                        
                                     Первое место: %s !!!!111!!!1!!!
                                     Второе место: %s !!!
                                     Третье место: %s !!!
@@ -112,14 +112,13 @@ public class TelegramBot extends TelegramWebhookBot {
         log.info("New message from User:{}, chatId: {},  with text: {}",
                 firstname, message.getChatId(), message.getText());
         if (userRepository.findByName(firstname).isEmpty()) {
-            if (!username.equals("GroupAnonymousBot") && !username.equals("Channel_Bot")) {
-                User user = new User();
-                user.setUsername(username);
-                user.setName(firstname);
-                userRepository.save(user);
-            }
-        }
-        else if (message.getText().equals("/start")) message.setText("/");
+//            if (!username.equals("GroupAnonymousBot") && !username.equals("Channel_Bot")) {
+            User user = new User();
+            user.setUsername(username);
+            user.setName(firstname);
+            userRepository.save(user);
+//            }
+        } else if (message.getText().equals("/start")) message.setText("/");
         return handleInputMessage(message);
     }
 

@@ -43,7 +43,6 @@ public class TelegramBot extends TelegramWebhookBot {
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
         logger.info(update.toString());
         try {
-
             if (update.getChannelPost() != null) {
                 return handleChatUpdate(update.getChannelPost());
             }
@@ -63,7 +62,7 @@ public class TelegramBot extends TelegramWebhookBot {
 
     private SendMessage handleChatUpdate(Message message) {
         String chatId = message.getChatId().toString();
-        if (message.getText().equals("Начинаем конкурс")) {
+        if (message.getText().equals("Результаты конкурса")) {
 //            return new SendMessage(chatId, "Погнали");
             List<User> users = userRepository.findAll();
 //        userRepository.deleteAll();
